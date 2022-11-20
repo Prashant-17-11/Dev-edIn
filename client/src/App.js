@@ -5,6 +5,8 @@ import Landing from "./components/layouts/Landing";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Alert from "./components/layouts/Alert";
+import Dashboard from "./components/dashboard/Dashboard";
+import PrivateRoute from "./components/routing/PrivateRoute";
 import "./App.css";
 
 // Redux
@@ -45,6 +47,16 @@ function App() {
               </section>
             }
           />
+          <Route element={<PrivateRoute />}>
+            <Route
+              path='/dashboard'
+              element={
+                <section className='container'>
+                  <Dashboard />{" "}
+                </section>
+              }
+            />
+          </Route>
         </Routes>
       </Router>
     </Provider>
