@@ -6,6 +6,7 @@ import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Alert from "./components/layouts/Alert";
 import Dashboard from "./components/dashboard/Dashboard";
+import CreateProfile from "./components/profile_form/CreateProfile";
 import PrivateRoute from "./components/routing/PrivateRoute";
 import "./App.css";
 
@@ -53,6 +54,16 @@ function App() {
               element={
                 <section className='container'>
                   <Dashboard />{" "}
+                </section>
+              }
+            />
+          </Route>
+          <Route element={<PrivateRoute />}>
+            <Route
+              path='/create-profile'
+              element={
+                <section className='container'>
+                  <CreateProfile />{" "}
                 </section>
               }
             />
