@@ -1,11 +1,11 @@
 import React, { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createProfile } from "../../actions/profile";
 import withRouter from "../../utitlity/withRouter";
 
-const CreateProfile = ({ createProfile, history }) => {
+const CreateProfile = ({ createProfile }) => {
   const [formData, setFormData] = useState({
     company: "",
     website: "",
@@ -44,9 +44,10 @@ const CreateProfile = ({ createProfile, history }) => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const navigate = useNavigate();
   const onSubmit = (e) => {
     e.preventDefault();
-    createProfile(formData, history);
+    createProfile(formData, navigate);
   };
 
   return (
