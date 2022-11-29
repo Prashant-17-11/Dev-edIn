@@ -7,6 +7,7 @@ import Register from "./components/auth/Register";
 import Alert from "./components/layouts/Alert";
 import Dashboard from "./components/dashboard/Dashboard";
 import CreateProfile from "./components/profile_form/CreateProfile";
+import EditProfile from "./components/profile_form/EditProfile";
 import PrivateRoute from "./components/routing/PrivateRoute";
 import "./App.css";
 
@@ -64,6 +65,16 @@ function App() {
               element={
                 <section className='container'>
                   <CreateProfile />{" "}
+                </section>
+              }
+            />
+          </Route>
+          <Route element={<PrivateRoute />}>
+            <Route
+              path='/edit-profile'
+              element={
+                <section className='container'>
+                  <EditProfile />{" "}
                 </section>
               }
             />
