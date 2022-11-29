@@ -16,6 +16,8 @@ import { Provider } from "react-redux";
 import store from "./store";
 import { loadUser } from "./actions/auth";
 import setAuthToken from "./utitlity/setAuthToken";
+import AddExperience from "./components/profile_form/AddExperience";
+import AddEducation from "./components/profile_form/AddEducation";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -75,6 +77,26 @@ function App() {
               element={
                 <section className='container'>
                   <EditProfile />{" "}
+                </section>
+              }
+            />
+          </Route>
+          <Route element={<PrivateRoute />}>
+            <Route
+              path='/add-experience'
+              element={
+                <section className='container'>
+                  <AddExperience />{" "}
+                </section>
+              }
+            />
+          </Route>
+          <Route element={<PrivateRoute />}>
+            <Route
+              path='/add-education'
+              element={
+                <section className='container'>
+                  <AddEducation />{" "}
                 </section>
               }
             />
