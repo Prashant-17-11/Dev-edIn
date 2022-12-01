@@ -9,6 +9,9 @@ import Dashboard from "./components/dashboard/Dashboard";
 import CreateProfile from "./components/profile_form/CreateProfile";
 import EditProfile from "./components/profile_form/EditProfile";
 import PrivateRoute from "./components/routing/PrivateRoute";
+import AddExperience from "./components/profile_form/AddExperience";
+import AddEducation from "./components/profile_form/AddEducation";
+import Profiles from "./components/Profiles/Profiles";
 import "./App.css";
 
 // Redux
@@ -16,8 +19,6 @@ import { Provider } from "react-redux";
 import store from "./store";
 import { loadUser } from "./actions/auth";
 import setAuthToken from "./utitlity/setAuthToken";
-import AddExperience from "./components/profile_form/AddExperience";
-import AddEducation from "./components/profile_form/AddEducation";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -48,6 +49,14 @@ function App() {
             element={
               <section className='container'>
                 <Login />{" "}
+              </section>
+            }
+          />
+          <Route
+            path='/profile'
+            element={
+              <section className='container'>
+                <Profiles />{" "}
               </section>
             }
           />
