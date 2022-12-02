@@ -12,6 +12,7 @@ import PrivateRoute from "./components/routing/PrivateRoute";
 import AddExperience from "./components/profile_form/AddExperience";
 import AddEducation from "./components/profile_form/AddEducation";
 import Profiles from "./components/Profiles/Profiles";
+import Profile from "./components/Profile/Profile";
 import "./App.css";
 
 // Redux
@@ -36,79 +37,24 @@ function App() {
         <Alert />
         <Routes>
           <Route path='/' element={<Landing />} />
-          <Route
-            path='/register'
-            element={
-              <section className='container'>
-                <Register />{" "}
-              </section>
-            }
-          />
-          <Route
-            path='/login'
-            element={
-              <section className='container'>
-                <Login />{" "}
-              </section>
-            }
-          />
-          <Route
-            path='/profile'
-            element={
-              <section className='container'>
-                <Profiles />{" "}
-              </section>
-            }
-          />
+          <Route path='/register' element={<Register />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/profiles' element={<Profiles />} />
+          <Route path='/profile/:id' element={<Profile />} />
           <Route element={<PrivateRoute />}>
-            <Route
-              path='/dashboard'
-              element={
-                <section className='container'>
-                  <Dashboard />{" "}
-                </section>
-              }
-            />
+            <Route path='/dashboard' element={<Dashboard />} />
           </Route>
           <Route element={<PrivateRoute />}>
-            <Route
-              path='/create-profile'
-              element={
-                <section className='container'>
-                  <CreateProfile />{" "}
-                </section>
-              }
-            />
+            <Route path='/create-profile' element={<CreateProfile />} />
           </Route>
           <Route element={<PrivateRoute />}>
-            <Route
-              path='/edit-profile'
-              element={
-                <section className='container'>
-                  <EditProfile />{" "}
-                </section>
-              }
-            />
+            <Route path='/edit-profile' element={<EditProfile />} />
           </Route>
           <Route element={<PrivateRoute />}>
-            <Route
-              path='/add-experience'
-              element={
-                <section className='container'>
-                  <AddExperience />{" "}
-                </section>
-              }
-            />
+            <Route path='/add-experience' element={<AddExperience />} />
           </Route>
           <Route element={<PrivateRoute />}>
-            <Route
-              path='/add-education'
-              element={
-                <section className='container'>
-                  <AddEducation />{" "}
-                </section>
-              }
-            />
+            <Route path='/add-education' element={<AddEducation />} />
           </Route>
         </Routes>
       </Router>
