@@ -13,6 +13,7 @@ import AddExperience from "./components/profile_form/AddExperience";
 import AddEducation from "./components/profile_form/AddEducation";
 import Profiles from "./components/Profiles/Profiles";
 import Profile from "./components/Profile/Profile";
+import Posts from "./components/Posts/Posts";
 import "./App.css";
 
 // Redux
@@ -55,6 +56,9 @@ function App() {
           </Route>
           <Route element={<PrivateRoute />}>
             <Route path='/add-education' element={<AddEducation />} />
+          </Route>
+          <Route element={<PrivateRoute />}>
+            <Route path='/posts' element={<Posts />} />
           </Route>
         </Routes>
       </Router>
