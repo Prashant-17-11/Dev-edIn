@@ -12,15 +12,14 @@ const Dashboard = ({
   getCurrentProfile,
   deleteAccount,
   auth: { user },
-  profile: { profile, loading },
+  profile: { profile },
 }) => {
   useEffect(() => {
     getCurrentProfile();
   }, [getCurrentProfile]);
-  return loading && profile === null ? (
-    <Spinner />
-  ) : (
-    <Fragment>
+
+  return (
+    <section className='container'>
       <h1 className='large text-primary'>Dashboard</h1>
       <p className='lead'>
         <i className='fas fa-user'></i> Welcome {user && user.name}
@@ -45,7 +44,7 @@ const Dashboard = ({
           </Link>
         </Fragment>
       )}
-    </Fragment>
+    </section>
   );
 };
 

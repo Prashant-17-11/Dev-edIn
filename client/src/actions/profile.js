@@ -106,7 +106,7 @@ export const createProfile =
       });
 
       dispatch(
-        setAlert(edit ? "Profile Updated" : "Profile Created", "success", 5000)
+        setAlert(edit ? "Profile Updated" : "Profile Created", "success")
       );
 
       if (!edit) {
@@ -116,9 +116,7 @@ export const createProfile =
       const errors = err.response.data.errors;
 
       if (errors) {
-        errors.forEach((error) =>
-          dispatch(setAlert(error.msg, "danger", 5000))
-        );
+        errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
       }
 
       dispatch({
@@ -141,14 +139,14 @@ export const addExperience = (formData, navigate) => async (dispatch) => {
       payload: res.data,
     });
 
-    dispatch(setAlert("Experience Added", "success", 5000));
+    dispatch(setAlert("Experience Added", "success"));
 
     navigate("/dashboard");
   } catch (err) {
     const errors = err.response.data.errors;
 
     if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, "danger", 5000)));
+      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
     }
 
     dispatch({
@@ -171,14 +169,14 @@ export const addEducation = (formData, navigate) => async (dispatch) => {
       payload: res.data,
     });
 
-    dispatch(setAlert("Education Added", "success", 5000));
+    dispatch(setAlert("Education Added", "success"));
 
     navigate("/dashboard");
   } catch (err) {
     const errors = err.response.data.errors;
 
     if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, "danger", 5000)));
+      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
     }
 
     dispatch({
@@ -201,7 +199,7 @@ export const deleteExperience = (id) => async (dispatch) => {
       payload: res.data,
     });
 
-    dispatch(setAlert("Experience Removed", "success", 5000));
+    dispatch(setAlert("Experience Removed", "success"));
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
@@ -223,7 +221,7 @@ export const deleteEducation = (id) => async (dispatch) => {
       payload: res.data,
     });
 
-    dispatch(setAlert("Education Removed", "success", 5000));
+    dispatch(setAlert("Education Removed", "success"));
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
@@ -249,9 +247,7 @@ export const deleteAccount = () => async (dispatch) => {
         type: ACCOUNT_DELETED,
       });
 
-      dispatch(
-        setAlert("Your Account has been permanantly deleted", "danger", 5000)
-      );
+      dispatch(setAlert("Your Account has been permanantly deleted", "danger"));
     } catch (err) {
       dispatch({
         type: PROFILE_ERROR,

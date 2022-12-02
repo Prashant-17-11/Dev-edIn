@@ -10,14 +10,9 @@ import {
   LOGOUT,
   CLEAR_PROFILE,
 } from "./types";
-import setAuthToken from "../utitlity/setAuthToken";
 
 // Load User
 export const loadUser = () => async (dispatch) => {
-  if (localStorage.token) {
-    setAuthToken(localStorage.token);
-  }
-
   try {
     const res = await api.get("/auth");
 
@@ -50,9 +45,7 @@ export const register =
       const errors = err.response.data.errors;
 
       if (errors) {
-        errors.forEach((error) =>
-          dispatch(setAlert(error.msg, "danger", 5000))
-        );
+        errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
       }
       dispatch({
         type: REGISTER_FAIL,
@@ -76,7 +69,7 @@ export const login = (email, password) => async (dispatch) => {
     const errors = err.response.data.errors;
 
     if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, "danger", 5000)));
+      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
     }
     dispatch({
       type: LOGIN_FAIL,

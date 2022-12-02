@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -34,7 +34,7 @@ const AddEducation = ({ addEducation }) => {
   };
 
   return (
-    <Fragment>
+    <section className='container'>
       <h1 className='large text-primary'>Add Your Education</h1>
       <p className='lead'>
         <i className='fas fa-code-branch'></i> Add any school or bootcamp that
@@ -120,7 +120,7 @@ const AddEducation = ({ addEducation }) => {
           Go Back
         </Link>
       </form>
-    </Fragment>
+    </section>
   );
 };
 
