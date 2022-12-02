@@ -54,8 +54,11 @@ const Profile = ({ getProfileById, profile: { profile }, auth }) => {
 
               {profile.education.length > 0 ? (
                 <Fragment>
-                  {profile.education.map((edu) => (
-                    <ProfileEducation key={edu._id} education={edu} />
+                  {profile.education.map((education) => (
+                    <ProfileEducation
+                      key={education._id}
+                      education={education}
+                    />
                   ))}
                 </Fragment>
               ) : (
