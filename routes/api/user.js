@@ -5,6 +5,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require("config");
 const { check, validationResult } = require("express-validator/check");
+const normalize = require("normalize-url");
 
 const User = require("../../models/User");
 
@@ -71,7 +72,7 @@ router.post(
         payload,
         config.get("jwtSecret"),
         {
-          expiresIn: 360000,
+          expiresIn: "5 days",
         },
         (err, token) => {
           if (err) throw err;
