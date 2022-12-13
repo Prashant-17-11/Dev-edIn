@@ -72,7 +72,7 @@ function App() {
             <Route path='posts' element={<Posts />} />
           </Route>
           <Route element={<PrivateRoute />}>
-            <Route path='post/:id' element={<Post />} />
+            <Route path='posts/:id' element={<Post />} />
           </Route>
           <Route path='/*' element={<NotFound />} />
         </Routes>
