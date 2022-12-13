@@ -4,7 +4,6 @@ const config = require("config");
 const router = express.Router();
 const auth = require("../../middleware/auth");
 const { check, validationResult } = require("express-validator/check");
-const normalize = require("normalize-url");
 const checkObjectId = require("../../middleware/checkObjectId");
 
 const Profile = require("../../models/Profile");
@@ -69,8 +68,7 @@ router.post(
     const profileFields = {};
     profileFields.user = req.user.id;
     if (company) profileFields.company = company;
-    if (website)
-      profileFields.website = normalize(website, { forceHttps: true });
+    if (website) profileFields.website = website;
     if (location) profileFields.location = location;
     if (bio) profileFields.bio = bio;
     if (status) profileFields.status = status;
@@ -86,13 +84,6 @@ router.post(
     if (facebook) profileFields.social.facebook = facebook;
     if (linkedin) profileFields.social.linkedin = linkedin;
     if (instagram) profileFields.social.instagram = instagram;
-
-    for (const [key, value] of Object.entries(social)) {
-      if (value && value.length > 0)
-        social[key] = normalize(value, { forceHttps: true });
-    }
-
-    profileFields.social = social;
 
     try {
       // Using upsert option (creates new doc if no match is found):
@@ -274,19 +265,19 @@ router.delete("/education/:edu_id", auth, async (req, res) => {
 // @access  Public
 router.get("/github/:username", async (req, res) => {
   try {
-    const uri = encodeURI(
-      `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc`
-    );
-    const headers = {
-      "user-agent": "node.js",
-      Authorization: `token ${config.get("githubSecret")}`,
-    };
+    const uri = `https://api.github.com/users/${
+      req.params.username
+    }/repos?per_page=5&sort=created:asc&client_id=${config.get(
+      "githubClientId"
+    )}&client_secret=${config.get("githubSecret")}`;
 
-    const gitHubResponse = await axios.get(uri, { headers });
-    return res.json(gitHubResponse.data);
+    const headers = { "user-agent": "node.js" };
+
+    const githubResponse = await axios.get(uri, headers);
+    return res.json(githubResponse.data);
   } catch (err) {
     console.error(err.message);
-    res.status(400).send("No Github profile found");
+    res.status(404).json({ msg: "No Github profile found" });
   }
 });
 
